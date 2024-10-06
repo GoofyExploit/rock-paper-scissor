@@ -22,46 +22,54 @@ document.addEventListener("DOMContentLoaded", function() {
     function playGame() {
         let humanScore = 0;
         let computerScore = 0;
+        let round = 1;
 
-        for (let round = 1; round <= 5; round++) {
-            console.log("Round " + round);
-            function playRound(humanChoice, computerChoice) {
-                if (humanChoice === "rock" && computerChoice === "paper") {
+        function playRound() {
+            if (round <= 5) {
+                console.log("Round " + round);
+
+                let humanSelection = getHumanChoice();
+                let computerSelection = getComputerChoice();
+
+                if (humanSelection === "rock" && computerSelection === "paper") {
                     console.log("Computer wins this round");
-                    return computerScore++;
-                } else if (humanChoice === "rock" && computerChoice === "scissors") {
+                    computerScore++;
+                } else if (humanSelection === "rock" && computerSelection === "scissors") {
                     console.log("Human wins this round");
-                    return humanScore++;
-                } else if (humanChoice === "paper" && computerChoice === "rock") {
+                    humanScore++;
+                } else if (humanSelection === "paper" && computerSelection === "rock") {
                     console.log("Human wins this round");
-                    return humanScore++;
-                } else if (humanChoice === "paper" && computerChoice === "scissors") {
+                    humanScore++;
+                } else if (humanSelection === "paper" && computerSelection === "scissors") {
                     console.log("Computer wins this round");
-                    return computerScore++;
-                } else if (humanChoice === "scissors" && computerChoice === "paper") {
+                    computerScore++;
+                } else if (humanSelection === "scissors" && computerSelection === "paper") {
                     console.log("Human wins this round");
-                    return humanScore++;
-                } else if (humanChoice === "scissors" && computerChoice === "rock") {
+                    humanScore++;
+                } else if (humanSelection === "scissors" && computerSelection === "rock") {
                     console.log("Computer wins this round");
-                    return computerScore++;
+                    computerScore++;
                 } else {
                     console.log("It's a tie");
                 }
+
+                console.log("Your Score = " + humanScore);
+                console.log("Computer Score = " + computerScore);
+
+                round++;
+                setTimeout(playRound, 1000); // delay before the next round
+            } else {
+                if (humanScore > computerScore) {
+                    console.log("You win the Game!");
+                } else if (humanScore === computerScore) {
+                    console.log("The Game has Tied!");
+                } else {
+                    console.log("Computer wins the Game!");
+                }
             }
-            const humanSelection = getHumanChoice();
-            const computerSelection = getComputerChoice();
-            playRound(humanSelection, computerSelection);
-            console.log("Your Score = " + humanScore);
-            console.log("Computer Score = " + computerScore);
         }
 
-        if (humanScore > computerScore) {
-            console.log("You win the Game!");
-        } else if (humanScore === computerScore) {
-            console.log("The Game has Tied!");
-        } else {
-            console.log("Computer wins the Game!");
-        }
+        playRound();
     }
 
     playGame();

@@ -32,7 +32,7 @@ function playGame() {
 
     let round
     for (round = 1; round <= 5; round++) {
-        
+
         console.log("Round " + round)
         // Logic to play a single round
         function playRound(humanChoice, computerChoice) {
@@ -67,7 +67,7 @@ function playGame() {
 
     if(humanScore > computerScore){
         console.log("You win the Game!")
-    }else if(humanScore == humanScore){
+    }else if(humanScore == computerScore){
         console.log("The Game has Tied!")
     }else{
         console.log("Computer wins the Game!")
